@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+<!--  service, dao 어노테이션 스캔  -->
+<context:annotation-config/>
+
+<!-- component-scan은 기본적으로 @Controller, @Service, @Dao, @Component 어노테이션을 사용한 클래스를 대상으로 spring bean으로 만듦 -->
+<!-- 기본필터(controller, service, dao, component)를 끄고
+	 우리가 스캔하고자 하는 service, dao에 대해서만 스캔하도록 include-filter를 이용하여 설정  -->
+<context:component-scan base-package="kr.or.ddit" use-default-filters="false"><!-- false 값: 기본 필터가 아닌 커스터마이즈 한 필터를 사용할거예요 -->
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
+	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+</context:component-scan>
+<!-- ↑↑↑↑↑↑↑다 안읽는데 이 두개만 읽겠다.  -->
+<!-- 하위 component-scan 내용과 같음 -->
+
+<context:component-scan base-package="kr.or.ddit"><!-- 다 읽는데 하위 두개는 읽지 않겠다. -->
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+</context:component-scan>
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
