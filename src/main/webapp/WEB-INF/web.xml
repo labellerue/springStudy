@@ -17,16 +17,31 @@
   	   초기화 파라미터 명은 정해져 있으므로 임의로 수정이 불가
   	   tip. contextloaderlistner 자동완성 사용하세요
    -->
-  <!-- needed for ContextLoaderListener -->
+  <!-- ROOT needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:kr/or/ddit/config/spring/root-context.xml</param-value>
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
+	<!-- Listener 설정 : POJO 빈에 대한 정보 설정 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<!-- ROOT 또다른 예 -->
+<!--<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		/WEB-INF/appricationContext_service.xml
+		/WEB-INF/appricationContext_dao.xml  		설정 파일이 여러개일 경우 줄바꿈을 통해 기술할 수 있다.
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+-->	
 	
 	
 	<!-- tip. dispatcherServlet 자동완성 -->
@@ -44,7 +59,7 @@
 	<!-- Map all requests to the DispatcherServlet for handling -->
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>		<!-- /*와 /:defaultServlet -->
+		<url-pattern>/</url-pattern>		<!-- /*와 /:defaultServlet   /(default)는 tomcat의 server.xml에 정의되어 있는 url-pattern "/"을 무시 -->
 	</servlet-mapping>
   
 	<!-- ENCODING -->

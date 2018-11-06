@@ -6,6 +6,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+<!-- **** Servlet (controller)을 위한 설정 **** -->
+
 
 <mvc:annotation-driven/>
 
@@ -26,6 +28,13 @@
 <!-- 위와같이 설정하면 hello라는 파일이 /WEB-INF/view/hello.jsp 의 형태로 치환이 됩니다. -->
 
 
+<!-- 파일 업로든
+	multipartResolver 설정  resolver란 분석가라는 뜻
+	해당 설정이 없으면 fileupload가 불가능함 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="defaultEncoding" value="UTF-8" />
+	<property name="maxUploadSize" value="25000000"/>
+</bean>
 
 
 

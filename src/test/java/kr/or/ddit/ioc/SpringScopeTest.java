@@ -36,10 +36,9 @@ public class SpringScopeTest {
 		/***When***/
 
 		/***Then***/
-		assertEquals(boardDao, boardDaoSingleton);
+		assertNotEquals(boardDao, boardDaoSingleton);
 		//같지 않음...즉 클래스로 비교하는 것이 아니라 각각 객체의 (default값)싱글톤으로 비교
 		
-		assertEquals(boardDao, boardDaoSingleton);
 	}
 
 }
