@@ -56,7 +56,7 @@
   	Update jspuser 
   	Set name=#{name}, pass=#{pass}, addr1=#{addr1}, addr2=#{addr2}, zip=#{zip}, 
   		birth=#{birth}, email=#{email}, tel=#{tel}
-		<if test="profile != null">, profile=#{profile}</if>
+		<if test="profile != null">, profile=#{profile, jdbcType=VARCHAR}</if>
   	Where userId = #{userId}
   </update>
   

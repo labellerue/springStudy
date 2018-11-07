@@ -17,7 +17,7 @@
 
 <!-- Custom styles for this template -->
 <link href="../css/signin.css" rel="stylesheet">
-<%@include file="/common/basicLib.jsp"%>
+<%@include file="/WEB-INF/view/common/basicLib.jsp"%>
 
 </head>
 

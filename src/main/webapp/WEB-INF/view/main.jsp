@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="/common/header.jsp"%>
+<%@ include file="/WEB-INF/view/common/header.jsp"%>
 
-<%@ include file="/common/left.jsp"%>
+<%@ include file="/WEB-INF/view/common/left.jsp"%>
 	<div class="container-fluid">
 		<div class="row">
 

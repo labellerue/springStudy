@@ -3,14 +3,16 @@ package kr.or.ddit.user.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionBindingListener;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
-public class UserVo implements HttpSessionBindingListener{
+public class UserVoJsr303 {
+	@Length(min=5)
+	@NotEmpty
 	private String userId;
+	@NotEmpty
 	private String name;
 	private String pass;
 	private String addr1;
@@ -21,12 +23,11 @@ public class UserVo implements HttpSessionBindingListener{
 	private String email;
 	private String tel;
 	private String profile;
-	//private MultipartFile profilePic;
 	private String alias;
 	private int rnum;
 	
 	
-	public UserVo(){
+	public UserVoJsr303(){
 		//에러를 위한 대비
 	}
 	
@@ -118,14 +119,6 @@ public class UserVo implements HttpSessionBindingListener{
 	public String getAlias() {
 		return alias;
 	}
-//	
-//	public MultipartFile getProfilePic() {
-//		return profilePic;
-//	}
-//
-//	public void setProfilePic(MultipartFile profilePic) {
-//		this.profilePic = profilePic;
-//	}
 
 	public void setAlias(String alias) {
 		this.alias = alias;
@@ -152,18 +145,5 @@ public class UserVo implements HttpSessionBindingListener{
 		return getPass().equals(encryptPass);
 	}
 
-	@Override
-	public void valueBound(HttpSessionBindingEvent event) {
-		System.out.println("userVo : " + event.getName());
-		
-	}
 
-	@Override
-	public void valueUnbound(HttpSessionBindingEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
 }

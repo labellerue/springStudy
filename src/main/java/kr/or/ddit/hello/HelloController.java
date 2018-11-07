@@ -81,8 +81,6 @@ public class HelloController {
 		model.addAttribute(map);		//Object
 		model.addAllAttributes(map2);	//컬렉션
 		
-		
-		
 		return "hello";
 	}
 	
@@ -148,6 +146,10 @@ public class HelloController {
 	
 	
 	
+	@RequestMapping("/exception")
+	public String view() {
+		throw new ArithmeticException();
+	}
 	
 	
 	
