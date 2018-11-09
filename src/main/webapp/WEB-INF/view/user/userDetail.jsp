@@ -61,8 +61,7 @@
 		<div class="form-group">
 			<label for="pass" class="col-sm-2 control-label">생년월일</label>
 			<div class="col-sm-10">
-				<label class="control-label"><fmt:formatDate
-						value="${userDetail.birth }" pattern="yyyy-MM-dd" /></label>
+				<label class="control-label"><fmt:formatDate value="${userDetail.birth }" pattern="yyyy-MM-dd" /></label>
 			</div>
 		</div>
 

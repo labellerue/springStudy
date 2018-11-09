@@ -16,7 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:kr/or/ddit/config/spring/servlet-context.xml" ,
-								"classpath:kr/or/ddit/config/spring/root-context.xml"})
+								"classpath:kr/or/ddit/config/spring/root-context.xml",
+								"classpath:kr/or/ddit/config/spring/transaction-context.xml",
+								"classpath:kr/or/ddit/config/spring/datasource-context.xml"})
 //스프링 컨테이너를 웹 기반에서 활용 가능한 WebApplicationContest로 생성
 @WebAppConfiguration
 public class ControllerTestConfig {

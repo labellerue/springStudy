@@ -82,7 +82,7 @@ public class UserServiceTest extends ServiceDaoTestConfig {
 		
 		/***Then***/
 		assertEquals(10, pageList.size());
-		assertEquals(11, pageCnt);
+		assertEquals(12, pageCnt);
 	}
 	
 	@Test

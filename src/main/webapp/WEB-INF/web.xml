@@ -20,7 +20,12 @@
   <!-- ROOT needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:kr/or/ddit/config/spring/root-context.xml</param-value>
+		<param-value>
+			classpath:kr/or/ddit/config/spring/root-context.xml
+			classpath:kr/or/ddit/config/spring/aop-context.xml
+			classpath:kr/or/ddit/config/spring/transaction-context.xml
+			classpath:kr/or/ddit/config/spring/datasource-context.xml
+		</param-value>
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
@@ -33,8 +38,9 @@
 <!--<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-		/WEB-INF/appricationContext_service.xml
-		/WEB-INF/appricationContext_dao.xml  		설정 파일이 여러개일 경우 줄바꿈을 통해 기술할 수 있다.
+			/WEB-INF/appricationContext_service.xml
+			/WEB-INF/appricationContext_dao.xml  	
+			설정 파일이 여러개일 경우 줄바꿈을 통해 기술할 수 있다.
 		</param-value>
 	</context-param>
 

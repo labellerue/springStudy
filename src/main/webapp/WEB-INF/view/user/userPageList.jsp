@@ -27,7 +27,7 @@
 		});
 		//getUserList(1);
 		getUserListHtml(1); // userList html로 리턴해주는 함수
-		getUserPagenationHtml(1); //해당 페이지의 페이지네이션 정보를 리턴해주는 함수
+		//getUserPagenationHtml(1); //해당 페이지의 페이지네이션 정보를 리턴해주는 함수
 		
 	});
 	
@@ -41,7 +41,7 @@
 			data: "page="+page+"&pageSize="+pageSize,
 			success: function(dt){
 				$("#userList").html(dt);
-				
+				getUserPagenationHtml(1);
 			}
 		});
 	}

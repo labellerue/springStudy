@@ -29,6 +29,10 @@ public class UserVo implements HttpSessionBindingListener{
 	public UserVo(){
 		//에러를 위한 대비
 	}
+	public UserVo(String userId, String name) {
+		this.userId = userId;
+		this.name = name;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -79,8 +83,12 @@ public class UserVo implements HttpSessionBindingListener{
 	}
 
 	public String getFormatBirth() {
-		String formatBirth = new SimpleDateFormat("yyyy-MM-dd").format(birth);
-		return formatBirth;
+		if(birth != null) {
+			String formatBirth = new SimpleDateFormat("yyyy-MM-dd").format(birth);
+			return formatBirth;
+		}else {
+			return "";
+		}
 	}
 
 	public Date getBirth() {

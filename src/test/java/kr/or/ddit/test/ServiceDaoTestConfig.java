@@ -9,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:kr/or/ddit/config/spring/root-context.xml"})
+@ContextConfiguration(locations = {"classpath:kr/or/ddit/config/spring/root-context.xml",
+								"classpath:kr/or/ddit/config/spring/transaction-context.xml",
+								"classpath:kr/or/ddit/config/spring/datasource-context.xml"})
 public class ServiceDaoTestConfig {
 	
 	@Ignore

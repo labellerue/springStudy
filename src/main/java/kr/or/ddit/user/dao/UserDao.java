@@ -2,18 +2,19 @@ package kr.or.ddit.user.dao;
 
 import java.util.List;
 
-import kr.or.ddit.config.db.SqlFactoryBuilder;
+import javax.annotation.Resource;
+
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDao implements UserDaoInf{
 
-	private SqlSessionFactory factory;
+	@Resource(name="sqlSessionTemplate")
+	private SqlSessionTemplate template;
 	
 	/**
 	* Method : selectUserAll
@@ -24,19 +25,11 @@ public class UserDao implements UserDaoInf{
 	 */
 	@Override
 	public List<UserVo> selectUserAll(){
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
 		//selectOne : 데이터가 한 건일 때
 		//selectList : 여러건의 데이터를 조회할 때
 		//메소드 인자: 문자열 = 네임스페이스(모듈명).쿼리아이디
-		List<UserVo> userList = session.selectList("jspuser.selectUserAll");
-		
-		//자동 커밋이 안되기 때문에 명시
-		session.rollback();
-		session.commit();
-		//닫아주세요.
-		session.close();
+		List<UserVo> userList = template.selectList("jspuser.selectUserAll");
 		
 		return userList;
 	}
@@ -44,22 +37,16 @@ public class UserDao implements UserDaoInf{
 	// 회원정보 조회 
 	@Override
 	public UserVo selectUser(String userId){
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		UserVo userVo = session.selectOne("jspuser.selectUser", userId);
-		session.close();
+		UserVo userVo = template.selectOne("jspuser.selectUser", userId);
 		
 		return userVo;
 	}
 	
 	@Override
 	public UserVo selectUser(UserVo userVo){
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		UserVo userVoResult = session.selectOne("jspuser.selectUserByVo", userVo);
-		session.close();
+		UserVo userVoResult = template.selectOne("jspuser.selectUserByVo", userVo);
 		
 		return userVoResult;
 	}
@@ -67,12 +54,9 @@ public class UserDao implements UserDaoInf{
 
 	@Override
 	public List<UserVo> selectUserPageList(PageVo pageVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		List<UserVo> userList = session.selectList("jspuser.selectUserPageList", pageVo);
-		session.close();
-		
+		List<UserVo> userList = template.selectList("jspuser.selectUserPageList", pageVo);
+
 		return userList;
 	}
 
@@ -85,11 +69,8 @@ public class UserDao implements UserDaoInf{
 	*/
 	@Override
 	public int getUserCnt() {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		int totalUserCnt = session.selectOne("jspuser.getUserCnt");
-		session.close();
+		int totalUserCnt = template.selectOne("jspuser.getUserCnt");
 		
 		return totalUserCnt;
 	}
@@ -104,12 +85,8 @@ public class UserDao implements UserDaoInf{
 	*/
 	@Override
 	public int insertUser(UserVo userVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		int insertCnt = session.insert("jspuser.insertUser", userVo);
-		session.commit();
-		session.close();
+		int insertCnt = template.insert("jspuser.insertUser", userVo);
 		
 		return insertCnt;
 	}
@@ -124,24 +101,16 @@ public class UserDao implements UserDaoInf{
 	*/
 	@Override
 	public int deleteUser(String userId) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		int deleteCnt = session.delete("jspuser.deleteUser", userId);
-		session.commit();
-		session.close();
+		int deleteCnt = template.delete("jspuser.deleteUser", userId);
 		
 		return deleteCnt;
 	}
 
 	@Override
 	public int updateUser(UserVo userVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
 		
-		int updateCnt = session.update("jspuser.updateUser", userVo);
-		session.commit();
-		session.close();
+		int updateCnt = template.update("jspuser.updateUser", userVo);
 		
 		return updateCnt;
 	}
