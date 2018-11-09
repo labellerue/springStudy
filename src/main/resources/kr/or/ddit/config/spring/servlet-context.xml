@@ -30,10 +30,27 @@
 	<property name="order" value="0"/>
 </bean>
 
+<!-- tiles 템플릿을 위한 설정 -->
+<!-- tiles view resolver -->
+<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	<!-- 보통 중간 쯤에 넣습니다. -->
+	<property name="order" value="1"/>
+	<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+</bean>
+<!-- tiles configurer -->
+<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<property name="definitions">
+		<list>
+			<value>classpath:kr/or/ddit/config/tiles/tiles-config.xml</value>
+		</list>
+	</property>
+</bean>
+
+
 <!-- jsp resolver를 사용하기 위한 -->
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<!-- 1순위 -->
-	<property name="order" value="1"/>
+	<property name="order" value="2"/>
 	<property name="prefix" value="/WEB-INF/view/"/>
 	<property name="suffix" value=".jsp"/>
 </bean>
@@ -60,11 +77,15 @@
 	<property name="basenames">
 		<list>
 			<value>classpath:kr/or/ddit/config/msg/error</value>
+			<value>classpath:kr/or/ddit/config/msg/msg</value>
 		</list>
 	</property>
 </bean>
 
 
+<!-- LOCALE -->
+<!-- localeResolver : 로케일에 대한 저장 위치 -->
+<bean id="localResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
 
 
 

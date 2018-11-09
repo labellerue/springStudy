@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,17 +81,46 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userPageList")
-	public String userPageList(Model model, PageVo pageVo) {
+	public String userPageList(/*Model model, PageVo pageVo*/) {
 
 		// get 방식의 url로 받아온 page와 pageSize
-		pageVo.setPage(pageVo.getPage());
+		/*pageVo.setPage(pageVo.getPage());
 		pageVo.setPageSize(pageVo.getPageSize());
 
 		Map<String, Object> resultMap = userService.selectUserPageList(pageVo);
-		model.addAllAttributes(resultMap);
+		model.addAllAttributes(resultMap);*/
 
 		return "user/userPageList";
 	}
+	
+	/* AJAX JSON */
+	@RequestMapping("/userPageListAjax")
+	public String userPageListAjax(Model model, PageVo pageVo) {
+		Map<String, Object> resultMap = userService.selectUserPageList(pageVo);
+		model.addAllAttributes(resultMap);
+			
+		return "jsonView";
+	}
+	
+	@RequestMapping("/userPageListAjaxHtml")
+	public String userPageListAjaxHtml(Model model, PageVo pageVo) {
+		Map<String, Object> resultMap = userService.selectUserPageList(pageVo);
+		model.addAllAttributes(resultMap);
+		
+		return "user/pageListHtml";
+	}
+	
+	@RequestMapping("/userPagenationHtml")
+	public String userPagenationHtml(Model model, PageVo pageVo) {
+		Map<String, Object> resultMap = userService.selectUserPageList(pageVo);
+		model.addAllAttributes(resultMap);
+		
+		return "user/pagenationHtml";
+	}
+	
+	
+	
+	
 
 	@RequestMapping(value = "/userDetail")
 	public String userDetail(Model model, @RequestParam("userId") String userId) {
@@ -104,12 +134,14 @@ public class UserController {
 	}
 
 	/******** 등록 *********/
-	@RequestMapping(value = "/userForm", method = RequestMethod.GET)
+	//@RequestMapping(value = "/userForm", method = RequestMethod.GET)
+	@GetMapping("/userForm")
 	public String userFormView() {
 		return "user/userForm";
 	}
 
-	@RequestMapping(value = "/userForm", method = RequestMethod.POST)
+	//@RequestMapping(value = "/userForm", method = RequestMethod.POST)
+	@PostMapping("/userForm")
 	public String userForm(@RequestPart("profilePic") MultipartFile part, HttpServletRequest request, UserVo userVo) {
 
 		try {

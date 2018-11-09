@@ -25,9 +25,7 @@ public class TimesTablesView implements View{
 		response.setContentType("text/html; charset=utf-8");
 		
 		// url에서 파라메터로 받아 단 설정
-		int dan = 9;
-		if(request.getParameter("tables") != null)
-			dan = Integer.parseInt(request.getParameter("tables"));
+		int dan = (int)model.get("tables");
 		
 		PrintWriter out = response.getWriter();
 		

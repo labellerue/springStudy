@@ -10,7 +10,20 @@
 		<mvc:mapping path="/**" />
 		<bean class="kr.or.ddit.intercepter.PerformanceCheckIntercepter"></bean>
 	</mvc:interceptor>
+
+<!-- 파라미터를 통한 로케일 정보 수정 -->
+<mvc:interceptor>
+	<mvc:mapping path="/**" />
+	<!-- i18n  i와 n사이에 18 글자의 단어가 있다는 뜻 -->
+	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	<property name="paramName" value="lang" />
+	</bean>
+</mvc:interceptor>
+
 </mvc:interceptors>
+
+<!-- locale resolver 저장위치-->
+<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
 
 
 </beans>
