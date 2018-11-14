@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="util">
+
+	<!-- 월 단위 달력 생성 -->
+	<insert id="makeMonthlyCalendar" parameterType="String">
+	<!-- 부등호 인식 불가능으로 &lt; 특수문자코드형식 또는 CDATA 섹션 [XML 표준] 사용 -->
+	Insert Into calendar
+	Select to_char( to_date(#{ym}||'01', 'yyyyMMdd') + (level-1), 'yyyyMMdd') as ymd
+		 , sysdate
+	From dual
+	Connect by level &lt; last_day(to_date(#{ym},'yyyyMM')) - (to_date(#{ym}||'01', 'yyyyMMdd'))+2
+	</insert>
+
+</mapper>

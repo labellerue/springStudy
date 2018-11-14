@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="springTask" class="kr.or.ddit.util.SpringTask"/>
+
+<task:scheduler id="scheduler"/>
+<task:scheduled-tasks scheduler="scheduler">
+	<task:scheduled ref="springTask" method="logging" cron="*/5 * * * * *"/><!-- 초분시일월요일 -->
+	<task:scheduled ref="springTask" method="makeMonthlyCalendar" cron="0 0 3 1 * *"/><!-- 매달1일새벽3시에실행 -->
+	<!-- 5 * * * * *  5초가 되면 실행
+		*/5 * * * * * 5초마다 실행
+	 -->
+</task:scheduled-tasks>
+
+
+</beans>

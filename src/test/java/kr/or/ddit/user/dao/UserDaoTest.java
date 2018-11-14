@@ -58,7 +58,7 @@ public class UserDaoTest extends ServiceDaoTestConfig {
 		System.out.println("list.size() : "+ list.size());
 		
 		/***Then 결과가 어떠해야하는지 정의 : (기대값,결과값) ***/
-		assertEquals(110,list.size());
+		assertEquals(114,list.size());
 	}
 	
 	@Test
@@ -121,14 +121,14 @@ public class UserDaoTest extends ServiceDaoTestConfig {
 	* Method 설명 : 전체 사용자 수 찾기 
 	*/
 	@Test 
-	public void getUsetCntTest(){
+	public void getUserCntTest(){
 		/***Given***/
 
 		/***When***/
 		int totalUserCnt =userDao.getUserCnt();
 
 		/***Then***/
-		assertEquals(110, totalUserCnt);
+		assertEquals(114, totalUserCnt);
 	}
 	
 	
