@@ -9,6 +9,7 @@
 <body>
 
 <h2>arithmetic.jsp</h2>
+ arithmetic : noun. 산술
 
 </body>
 </html>
